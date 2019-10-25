@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [ 
-    'awwardsapp.apps.awwardsappConfig',
+    'awwardsapp.apps.AwwardsappConfig',
     'bootstrap4',
     'tinymce',
     'django.contrib.admin',
@@ -86,7 +86,7 @@ DATABASES = {
     'PASSWORD':'34003',
     }
 }
-}
+
 
 
 # Password validation
