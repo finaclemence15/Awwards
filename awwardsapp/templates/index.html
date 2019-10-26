@@ -1,4 +1,19 @@
 {%extends 'base.html'%}
 {% block content %}
-{{block.super}}
+{{ block.super}}
+
+<div class="container-fluid">
+
+  <!-- Looping through images   -->
+  <div class="row">
+    {% for project in projects %}
+    <div class="col-md-3">
+      <h5><strong> {{project.title}} </strong></h5>
+      <img src="{{project.image.url}}"
+        class="img-thumbnail project img-responsive" alt="Image" data-toggle="modal" data-target="#{{project.id}}">
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
 {% endblock %}

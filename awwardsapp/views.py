@@ -6,8 +6,8 @@ from .forms import NewProjectsForm
 
 # Create your views here.
 def welcome(request):
-    # profile = Profile.objects.all()
-    return render(request, 'index.html')
+    projects = Projects.objects.all()
+    return render(request, 'index.html' ,{'projects':projects})
 
 
 @login_required(login_url='/accounts/login/')
