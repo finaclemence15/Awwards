@@ -1,28 +1,25 @@
 {%extends 'base.html'%}
 {% block content %}
-<div class="container">
+<div class="container-fluid"> <br>
 
   <div class="row"> 
     {% if projects%}
-    <h2>Found {{ projects|length }} of searched term {{message}}</h2>
+    <h4>Found {{ projects|length }} of searched term {{message}}</h4>
     {% else %}
-    <h2> Found 0 projects for the search term {{message}}</h2>
+    <h4> Found 0 projects for the search term {{message}}</h4>
     {% endif %}
 
   </div>
 
-  
-
-   
+  <div class="row"> <br>
     {% for project in projects %}
-    <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
        
-      <h1>{{project.title}}</h1> <br>
-      <img src="{{project.image.url}}" class="img-responsive" alt="Image" height="300px" width="300px">
+      <h1>{{project.title}}</h1>
+      <img src="{{project.image.url}}" class="img-thumbnail photo img-responsive" alt="Image" > <br> <br>
       <p>{{project.description}}</p>
     </div> <br>
-  </div>
     {% endfor %}
+</div>
 </div>
 {% endblock %}
