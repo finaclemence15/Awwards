@@ -9,6 +9,20 @@ def welcome(request):
     projects = Projects.objects.all()
     return render(request, 'index.html' ,{'projects':projects})
 
+# search function
+def search_project(request):
+
+    if 'project' in request.GET and request.GET["project"]:
+        search_term = request.GET.get("project")
+        searched_projects = Projects.search_by_title(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"projects": searched_projects})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
+
 #  function to add site
 
 @login_required(login_url='/accounts/login/')
@@ -17,9 +31,9 @@ def add_site(request):
     if request.method == 'POST':
         form = NewProjectsForm(request.POST, request.FILES)
         if form.is_valid():
-            title = form.save(commit=False)
-            title.poster = current_user
-            title.save()
+            project = form.save(commit=False)
+            project.poster = current_user
+            project.save()
         return redirect('welcome')
 
     else:

@@ -16,7 +16,7 @@
 </html>
 <!-- navbar -->
 
-<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top" role="navigation">
+<nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
     <div class="container-fluid">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul class="navbar-nav mr-auto">
@@ -24,10 +24,11 @@
                     <a class="nav-link" href='/' style="margin: 10px">Menu</a>
                 </li>
                 <li class="nav-link" style="margin: 5px">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="form-inline my-2 my-lg-0" action="{% url 'search_project' %}">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" name = "project" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                     </form>
+
                 </li>
             </ul>
         </div>

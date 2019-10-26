@@ -35,7 +35,10 @@ class Projects (models.Model):
     
     def save_projects(self):
         self.save()
-
+    @classmethod
+    def search_by_title(cls,search_term):
+        titles = cls.objects.filter(title__icontains=search_term)
+        return titles  
     
 class Rating(models.Model):
     profile = models.ForeignKey(Profile,null = True)

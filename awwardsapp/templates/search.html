@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{% block content %}
+<div class="container">
+
+  <div class="row"> 
+    {% if projects%}
+    <h2>Found {{ projects|length }} of searched term {{message}}</h2>
+    {% else %}
+    <h2> Found 0 projects for the search term {{message}}</h2>
+    {% endif %}
+
+  </div>
+
+  
+
+   
+    {% for project in projects %}
+    <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+       
+      <h1>{{project.title}}</h1> <br>
+      <img src="{{project.image.url}}" class="img-responsive" alt="Image" height="300px" width="300px">
+      <p>{{project.description}}</p>
+    </div> <br>
+  </div>
+    {% endfor %}
+</div>
+{% endblock %}
