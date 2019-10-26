@@ -2,16 +2,18 @@
 {% block content %}
 {{ block.super}}
 
-<div class="container-fluid"> <br> 
+<div class="container-fluid">
 
   <!-- Looping through images   -->
   <div class="row"> 
+    
     {% for project in projects %}
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-      <h5><strong> {{project.title}} </strong></h5> <br>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"> <br> <br> <br> <br>
+        <h5><strong> {{project.title}} </strong></h5> <br> 
       <img src="{{project.image.url}}"
         class="img-thumbnail photo img-responsive" alt="Image" data-toggle="modal" data-target="#{{project.id}}"> <br>
         <p> {{project.description}}</p>
+        
     </div>
     {% endfor %}
   </div>

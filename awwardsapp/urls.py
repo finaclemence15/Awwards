@@ -5,7 +5,10 @@ from . import views
 
 urlpatterns=[
     url('^$',views.welcome,name = 'welcome'),
-    url(r'^new/title$', views.add_site, name='add_site')
+    url(r'^new/title$', views.add_site, name='add_site'),
+    url(r'^new/profile$', views.profile, name='profile'),
+    url(r'^myaccount$',views.myaccount,name = 'myaccount'),
+    url(r'^new/edit_profile$', views.edit_profile, name='edit_profile'),
 ]
 
 if settings.DEBUG:
