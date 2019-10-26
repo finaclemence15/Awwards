@@ -3,48 +3,49 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <style>
-        .vr {
-            width: 0px;
-            height: 50px;
-            border-left: 1px solid grey;
-        }
 
-        a {
-            text-decoration: none;
-            color: black;
-        }
-    </style>
-    <nav class="navbar navbar-dark bg-light " role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <div id='left'>
-                    <a href='/' style="margin: 10px">Menu</a>
-                    <!-- <hr class="vr" /> -->
-                    <img src="https://image.flaticon.com/icons/svg/482/482631.svg" height="20px" width="20px" alt="">
-                    <!-- <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form> -->
-                </div>
-            </div>
-            <div id='center'>
-                <h2><strong>awwwards.</strong></h2>
-            </div>
-            <div id='right'>
-                <a class="" href="" style="margin: 20px"><strong> REGISTER/LOGIN</strong></a>
-                <a class="btn btn-primary" href="{%url 'add_site'%}" style="color: white;">SUBMIT YOUR SITE</a>
-            </div>
-        </div>
-    </nav>
 </body>
 
-
 </html>
+<!-- navbar -->
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top" role="navigation">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href='/' style="margin: 10px">Menu</a>
+            </li>
+            <li class="nav-link" style="margin: 5px">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <div class="mx-auto order-0">
+        <h2><strong>awwwards.</strong></h2>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="" href="" style="margin: 20px"><strong> REGISTER/LOGIN</strong></a>
+            </li>
+            <li class="nav-item">
+                <!-- <a class="nav-link" href="#">Link</a> -->
+                <a class="btn btn-primary" href="{%url 'add_site'%}" style="color: white;">SUBMIT YOUR SITE</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!--  -->
