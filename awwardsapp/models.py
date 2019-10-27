@@ -10,7 +10,7 @@ class Profile(models.Model):
     bio = models.CharField(max_length =60)
     email = models.EmailField()
     phone_number = models.CharField(max_length = 10,blank =True)
-    username = models.OneToOneField(User,on_delete=models.CASCADE, related_name='profile')
+    username = models.OneToOneField(User,on_delete=models.CASCADE, related_name='profile',null=True)
     def __str__(self):
         return self.bio
 

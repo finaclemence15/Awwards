@@ -9,9 +9,15 @@ class ProfileTestClass(TestCase):
     
         # Set up method
     def setUp(self):
-        self.image= Profile(profile_pict = 'img.jpg', bio ='image')
+        self.image= Profile(profile_pict = 'img.jpg', bio ='image', email = "fi@gmail.com",phone_number = '07854222')
         # self.images= Profile(profile1 = 'piza1.jpg', bio ='pizza')
         
         # Testing  instance
     def test_instance(self):
         self.assertTrue(isinstance(self.image,Profile))     
+
+        # Testing Save Method of Profile model
+    def test_save_method(self):
+        self.image.save_profile()
+        images = Profile.objects.all()
+        self.assertTrue(len(images) > 0)   
