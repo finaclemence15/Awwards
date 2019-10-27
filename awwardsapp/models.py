@@ -35,6 +35,13 @@ class Projects (models.Model):
     
     def save_projects(self):
         self.save()
+        
+    def update_projects(self):
+        self.update()
+
+    def delete_projects(self):
+        self.delete() 
+                
     @classmethod
     def search_by_title(cls,search_term):
         titles = cls.objects.filter(title__icontains=search_term)

@@ -10,7 +10,6 @@ class ProfileTestClass(TestCase):
         # Set up method
     def setUp(self):
         self.image= Profile(profile_pict = 'img.jpg', bio ='image', email = "fi@gmail.com",phone_number = '07854222')
-        # self.images= Profile(profile1 = 'piza1.jpg', bio ='pizza')
         
         # Testing  instance
     def test_instance(self):
@@ -46,8 +45,13 @@ class ProjectsTestClass(TestCase):
         # Set up method
     def setUp(self):
         self.pizza= Projects(title = 'pizza',image = 'img.jpg', description ='delicious',post_date = '07854222')
-        # self.images= Profile(profile1 = 'piza1.jpg', bio ='pizza')
         
         # Testing  instance
     def test_instance(self):
-        self.assertTrue(isinstance(self.pizza,Projects))          
+        self.assertTrue(isinstance(self.pizza,Projects))
+        
+        # Testing Save Method of Project model
+    def test_save_method(self):
+        self.pizza.save_projects()
+        pizza1 = Projects.objects.all()
+        self.assertTrue(len(pizza1) > 0)                    
