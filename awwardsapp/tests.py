@@ -38,3 +38,16 @@ class ProfileTestClass(TestCase):
         update = Profile.objects.filter(id = image.id).update(profile_pict = 'cake.jpg')
         updated = Profile.objects.filter(profile_pict = 'cake.jpg').first()
         self.assertNotEqual(image.profile_pict, updated.profile_pict)         
+        
+# Projects model test  
+      
+class ProjectsTestClass(TestCase):        
+    
+        # Set up method
+    def setUp(self):
+        self.pizza= Projects(title = 'pizza',image = 'img.jpg', description ='delicious',post_date = '07854222')
+        # self.images= Profile(profile1 = 'piza1.jpg', bio ='pizza')
+        
+        # Testing  instance
+    def test_instance(self):
+        self.assertTrue(isinstance(self.pizza,Projects))          
