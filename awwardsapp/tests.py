@@ -55,3 +55,12 @@ class ProjectsTestClass(TestCase):
         self.pizza.save_projects()
         pizza1 = Projects.objects.all()
         self.assertTrue(len(pizza1) > 0)                    
+        
+    # Testing  delete method of Project model     
+    def test_delete(self):
+        self.pizza= Projects(title ='pizza', image = 'img.jpg')
+        self.pizza.save_projects()
+        pizza = Projects.objects.filter(image = 'img.jpg').first()
+        delete = Projects.objects.filter(id = pizza.id).delete()
+        pizza1 = Projects.objects.all()
+        self.assertTrue(len(pizza1) == 0)          
