@@ -86,8 +86,17 @@ class RatingTestClass(TestCase):
     def test_instance(self):
         self.assertTrue(isinstance(self.review,Rating))   
         
-        # Testing Save Method of Project model
+        # Testing Save Method of Rating model
     def test_save_method(self):
         self.review.save_rating()
         rating = Rating.objects.all()
         self.assertTrue(len(rating) > 0)         
+        
+    # Testing  delete method of Rating model     
+    def test_delete(self):
+        self.review= Rating(design = '9',usability = '7', content ='8')
+        self.review.save_rating()
+        review = Rating.objects.filter(design = '9').first()
+        delete = Rating.objects.filter(id = review.id).delete()
+        rating = Rating.objects.all()
+        self.assertTrue(len(rating) == 0)          
