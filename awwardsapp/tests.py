@@ -72,3 +72,16 @@ class ProjectsTestClass(TestCase):
         update = Projects.objects.filter(id = pizza.id).update(image = 'cake.jpg')
         updated = Projects.objects.filter(image = 'cake.jpg').first()
         self.assertNotEqual(pizza.image, updated.image)          
+        
+        
+# Rating model test  
+      
+class RatingTestClass(TestCase):          
+    
+        # Set up method
+    def setUp(self):
+        self.review= Rating(design = '9',usability = '7', content ='8')
+        
+        # Testing  instance
+    def test_instance(self):
+        self.assertTrue(isinstance(self.review,Rating))    
