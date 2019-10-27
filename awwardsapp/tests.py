@@ -30,3 +30,11 @@ class ProfileTestClass(TestCase):
         delete = Profile.objects.filter(id = image.id).delete()
         images = Profile.objects.all()
         self.assertTrue(len(images) == 0)         
+
+    # Testing  update method of Profile model    
+    def test_update(self):
+        self.image.save_profile()
+        image = Profile.objects.filter(profile_pict = 'img.jpg').first()
+        update = Profile.objects.filter(id = image.id).update(profile_pict = 'cake.jpg')
+        updated = Profile.objects.filter(profile_pict = 'cake.jpg').first()
+        self.assertNotEqual(image.profile_pict, updated.profile_pict)         
