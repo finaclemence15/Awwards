@@ -99,4 +99,12 @@ class RatingTestClass(TestCase):
         review = Rating.objects.filter(design = '9').first()
         delete = Rating.objects.filter(id = review.id).delete()
         rating = Rating.objects.all()
-        self.assertTrue(len(rating) == 0)          
+        self.assertTrue(len(rating) == 0) 
+        
+    # Testing  update method of Rating model    
+    def test_update(self):
+        self.review.save_rating()
+        review = Rating.objects.filter(design = '9').first()
+        update = Rating.objects.filter(id = review.id).update(design = '5')
+        updated = Rating.objects.filter(design = '5').first()
+        self.assertNotEqual(review.design, updated.design)                     
