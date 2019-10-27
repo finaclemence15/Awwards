@@ -25,7 +25,7 @@ An application that allows users to post a project he/she has created and get it
 
 
 ```
-git clone [Awwards] (https://github.com/finaclemence15/Awwards)
+git clone https://github.com/finaclemence15/Awwards
 
 virtualenv virtual
 
