@@ -64,3 +64,11 @@ class ProjectsTestClass(TestCase):
         delete = Projects.objects.filter(id = pizza.id).delete()
         pizza1 = Projects.objects.all()
         self.assertTrue(len(pizza1) == 0)          
+        
+    # Testing  update method of Project model    
+    def test_update(self):
+        self.pizza.save_projects()
+        pizza = Projects.objects.filter(image = 'img.jpg').first()
+        update = Projects.objects.filter(id = pizza.id).update(image = 'cake.jpg')
+        updated = Projects.objects.filter(image = 'cake.jpg').first()
+        self.assertNotEqual(pizza.image, updated.image)          
