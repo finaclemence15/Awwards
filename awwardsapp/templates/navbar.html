@@ -11,47 +11,63 @@
 
 <body>
 
+    <style>
+        a{
+
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 20px;
+        }
+        #hd{
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 40px;
+        }
+    </style>
+    <!-- navbar -->
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href='/' style=" font-size: 30px"> <strong> Menu </strong></a>
+                    </li>
+                    <li class="nav-link" style="margin: 5px">
+                        <form class="form-inline my-2 my-lg-0" action="{% url 'search_project' %}">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="project"
+                                aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="mx-auto order-0">
+                <h2 id="hd"><strong>awwwards.</strong></h2>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="" href="{%url 'myaccount'%}" style="margin: 20px;text-decoration: none; color: black">create Profile</a>
+                        <a href="{%url 'myaccount'%}" style="text-decoration: none; color: black;">  {{user.username}} <img src="https://avatarfiles.alphacoders.com/115/115265.png"
+                                alt="profile" height="50px" width="50px" style="border-radius: 50%"></a>
+                        <a href="{%url 'add_site'%}" style="margin: 20px;text-decoration: none; font-size: 20px;color: black;"><b> SUBMIT YOUR SITE </b></a>
+                        <a class="btn btn-primary btn-sm" href="/logout">Logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="btn btn-primary btn-sm" href="/accounts/login/"> Sign In </a>
+                    </li>
+
+                    {%endif%}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
 </body>
 
 </html>
-<!-- navbar -->
-
-<nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href='/' style="margin: 10px">Menu</a>
-                </li>
-                <li class="nav-link" style="margin: 5px">
-                    <form class="form-inline my-2 my-lg-0" action="{% url 'search_project' %}">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" name = "project" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-
-                </li>
-            </ul>
-        </div>
-        <div class="mx-auto order-0">
-            <h2><strong>awwwards.</strong></h2>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="" href=" {%url 'profile'%}" style="margin: 20px"><strong>create profile</strong></a>
-                    <a href="{%url 'myaccount'%}" style="text-decoration: none; color: black; margin: 20px"> <img src="https://avatarfiles.alphacoders.com/115/115265.png" alt="profile"
-                        height="50px" width="50px" style="border-radius: 50%;"></a> 
-                </li>
-                <li class="nav-item">
-                    <!-- <a class="nav-link" href="#">Link</a> -->
-                    <a class="btn btn-primary" href="{%url 'add_site'%}" style="color: white;">SUBMIT YOUR SITE</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!--  -->
