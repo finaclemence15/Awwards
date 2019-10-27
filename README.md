@@ -14,18 +14,18 @@ An application that allows users to post a project he/she has created and get it
 
 ## User Stories
 
-1. View different photos that interest me.
-2. Click on a single photo to expand it and also view the details of the photo. The photo details must appear on a modal within the same route as the main page.
-3. Search for different categories of photos. (ie. Travel, Food)
-4. Copy a link to the photo to share with my friends.
-5. View photos based on the location they were taken.
-
+1. View posted projects and their details
+2. Post a project to be rated/reviewed
+3. Rate/ review other users' projects
+4. Search for projects 
+5. View projects overall score
+6. View my profile page
  
 ## Installation Requirement
 
 
 ```
-git clone https://github.com/finaclemence15/Awwards
+git clone [Awwards] (https://github.com/finaclemence15/Awwards)
 
 virtualenv virtual
 
