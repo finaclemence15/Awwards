@@ -84,4 +84,10 @@ class RatingTestClass(TestCase):
         
         # Testing  instance
     def test_instance(self):
-        self.assertTrue(isinstance(self.review,Rating))    
+        self.assertTrue(isinstance(self.review,Rating))   
+        
+        # Testing Save Method of Project model
+    def test_save_method(self):
+        self.review.save_rating()
+        rating = Rating.objects.all()
+        self.assertTrue(len(rating) > 0)         

@@ -53,5 +53,15 @@ class Rating(models.Model):
     design =  models.CharField(max_length =60)
     usability = models.CharField(max_length =60)
     content = HTMLField()
+    
     def __str__(self):
         return self.content
+    
+    def save_rating(self):
+        self.save()
+        
+    def update_rating(self):
+        self.update()
+
+    def delete_rating(self):
+        self.delete()     
