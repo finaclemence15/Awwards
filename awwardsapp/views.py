@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from .models import Projects, Profile, Rating, User
 from .forms import NewProjectsForm, NewProfileForm
-
+from .serializer import ProjectsSerializer, ProfileSerializer
+from rest_framework import status
 
 # Create your views here.
 def welcome(request):
@@ -97,32 +100,29 @@ def edit_profile(request):
            form=NewProfileForm()     
            
    return render(request,'editProfile.html',{"form":form})                             
-    #    form=NewProfileForm(request.POST,request.FILES)
-    #    Profile.objects.filter(bio = user_edit)
-    #    if form.is_valid():
-    #     #    form.save()
-    #        return redirect('myaccount')
-#    else:
-#           form = NewProfileForm()
-#    return render(request,'editProfile.html',locals())
-
-# 
-# @login_required(login_url='/accounts/login/')
-# def update_profile(request):
-#    current_user=request.user
-#    if request.method =='POST':
-#        if Profile.objects.filter(username_id=current_user).exists():
-#            form = ProfileForm(request.POST,request.FILES,instance=Profile.objects.get(username_id = current_user))
-#        else:
-#            form=ProfileForm(request.POST,request.FILES)
-#        if form.is_valid():
-#          profile=form.save(commit=False)
-#          profile.user=current_user
-#          profile.save()
-#          return redirect('profile',current_user.id)
-#    else:
-#        if Profile.objects.filter(username_id = current_user).exists():
-#           form=ProfileForm(instance =Profile.objects.get(username_id=current_user))
-#        else:
-#            form=ProfileForm()
-#    return render(request,'all-awards/profile_form.html',{"form":form})
+  
+class ProjectsList(APIView):
+    def get(self, request, format=None):
+        all_merch = Projects.objects.all()
+        serializers = ProjectsSerializer(all_merch, many=True)
+        return Response(serializers.data)  
+    
+    def post(self, request, format=None):
+        serializers = ProjectsSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)    
+    
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_merch = Profile.objects.all()
+        serializers = ProfileSerializer(all_merch, many=True)
+        return Response(serializers.data)     
+    
+    def post(self, request, format=None):
+        serializers = ProfileSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)      
