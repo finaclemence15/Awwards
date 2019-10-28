@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http  import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Projects, Profile, Rating
+from .models import Projects, Profile, Rating, User
 from .forms import NewProjectsForm, NewProfileForm
+
 
 # Create your views here.
 def welcome(request):
@@ -43,22 +44,26 @@ def add_site(request):
 #  function to create profile
 
 @login_required(login_url='/accounts/login/')
-def profile(request):
-    current_user = request.user
-    profile = Profile.objects.filter(id=current_user.id)
+def profile(request, profile_id):
+    current_user = request.user.username
+    # profile = Profile.objects.filter(id=current_user.id)
     # images = Projects.objects.filter(username= current_user)
     # images = Image.objects.all()
     if request.method == 'POST':
         form = NewProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
-            profile.username = current_user
+            profile.user = current_user
             profile.save()
         return redirect('myaccount')
 
     else:
         form = NewProfileForm()
-    return render(request, 'profile.html', {"form": form}) 
+    username=User.objects.all()    
+    projects = Projects.objects.filter(profile = profile_id)
+    profile = Profile.objects.filter(username__username = current_user)    
+    
+    return render(request, 'timeline.html', {"form": form, "username": username,"projects": projects, "profile": profile}) 
 
 @login_required(login_url='/accounts/login/')
 def myaccount(request):
@@ -66,17 +71,58 @@ def myaccount(request):
   myProfile = Profile.objects.filter(username = current_user).first()
   return render(request, 'timeline.html', {"myProfile":myProfile})
 
+
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):
    current_user=request.user
-   user_edit =Profile.objects.filter(username=current_user).first()
+#    user_edit =Profile.objects.filter(username=current_user).first()
    
    if request.method =='POST':
-       form=NewProfileForm(request.POST,request.FILES)
-       Profile.objects.filter(bio = user_edit)
+       
+       if Profile.objects.filter(username_id=current_user).exists():
+           form = NewProfileForm(request.POST,request.FILES,instance=Profile.objects.get(username_id = current_user))    
+       else:
+           form=NewProfileForm(request.POST,request.FILES)   
+           
        if form.is_valid():
-        #    form.save()
-           return redirect('myaccount')
+         profile=form.save(commit=False)
+         profile.user=current_user
+         profile.save()
+         return redirect('profile',current_user.id)    
+     
    else:
-          form = NewProfileForm()
-   return render(request,'editProfile.html',locals())
+       if Profile.objects.filter(username_id = current_user).exists():
+          form=NewProfileForm(instance =Profile.objects.get(username_id=current_user))
+       else:
+           form=NewProfileForm()     
+           
+   return render(request,'editProfile.html',{"form":form})                             
+    #    form=NewProfileForm(request.POST,request.FILES)
+    #    Profile.objects.filter(bio = user_edit)
+    #    if form.is_valid():
+    #     #    form.save()
+    #        return redirect('myaccount')
+#    else:
+#           form = NewProfileForm()
+#    return render(request,'editProfile.html',locals())
+
+# 
+# @login_required(login_url='/accounts/login/')
+# def update_profile(request):
+#    current_user=request.user
+#    if request.method =='POST':
+#        if Profile.objects.filter(username_id=current_user).exists():
+#            form = ProfileForm(request.POST,request.FILES,instance=Profile.objects.get(username_id = current_user))
+#        else:
+#            form=ProfileForm(request.POST,request.FILES)
+#        if form.is_valid():
+#          profile=form.save(commit=False)
+#          profile.user=current_user
+#          profile.save()
+#          return redirect('profile',current_user.id)
+#    else:
+#        if Profile.objects.filter(username_id = current_user).exists():
+#           form=ProfileForm(instance =Profile.objects.get(username_id=current_user))
+#        else:
+#            form=ProfileForm()
+#    return render(request,'all-awards/profile_form.html',{"form":form})

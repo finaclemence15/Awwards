@@ -52,7 +52,7 @@
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="" href="{%url 'profile'%}" style="margin: 20px;text-decoration: none; color: black">create Profile</a>
+                       
                         <a href="{%url 'myaccount'%}" style="text-decoration: none; color: black;"> {{user.username}}
                             <img src="https://avatarfiles.alphacoders.com/115/115265.png" alt="profile" height="50px" width="50px" style="border-radius: 50%">
                         </a>

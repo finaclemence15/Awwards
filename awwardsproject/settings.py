@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [ 
     'awwardsapp.apps.AwwardsappConfig',
+    'rest_framework',
     'bootstrap4',
     'tinymce',
     'django.contrib.admin',
