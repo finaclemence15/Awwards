@@ -23,7 +23,7 @@
     </style>
     <!-- navbar -->
 
-    <nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
                 <ul class="navbar-nav mr-auto">
@@ -51,13 +51,12 @@
 
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="{% url 'profile' user.id%}" style="text-decoration: none; color: black; ">
-                            {{user.username}}</a>
-                        {% if user.profile_pict%}
+                        <a href="{% url 'profile' user.id%}" style="text-decoration: none; color: black; ">{{user.username}}
+                        {% if user.profile.profile_pict%}
                         <img src="{{user.profile.profile_pict.url}}" alt="profile" height="50px" width="50px"
-                            style="border-radius: 50%">
+                            style="border-radius: 50%"> </a>
                         {% else %}
-                        <img src="https://avatarfiles.alphacoders.com/115/115265.png" alt="profile" height="50px"
+                        <img src="https://cdn2.vectorstock.com/i/1000x1000/23/56/best-female-avatar-icon-thin-line-vector-18182356.jpg" alt="profile" height="50px"
                             width="50px" style="border-radius: 50%">
                         {% endif %}
                         <a href="{%url 'add_site'%}"

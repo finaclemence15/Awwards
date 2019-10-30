@@ -50,9 +50,6 @@ def add_site(request):
 @login_required(login_url='/accounts/login/')
 def profile(request, profile_id):
     current_user = request.user
-    # profile = Profile.objects.filter(id=current_user.id)
-    # images = Projects.objects.filter(username= current_user)
-    # images = Image.objects.all()
     if request.method == 'POST':
         form = NewProfileForm(request.POST, request.FILES)
         if form.is_valid():
@@ -64,9 +61,10 @@ def profile(request, profile_id):
     else:
         form = NewProfileForm()
     username=User.objects.all()    
-    myProfile = Profile.objects.filter(username = current_user)    
+    myProfile = Profile.objects.filter(username = current_user)
+    projects = Projects.objects.filter(poster = current_user)    
     
-    return render(request, 'profile.html', {"form": form, "username": username,"myProfile": myProfile}) 
+    return render(request, 'profile.html', {"form": form, "username": username,"myProfile": myProfile, "projects":projects}) 
 
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):

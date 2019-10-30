@@ -6,17 +6,28 @@
 
   <!-- Looping through images   -->
   <div class="row"> 
-    
+
     {% for project in projects %}
+
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"> 
-        <h5><strong> {{project.title}} </strong></h5> <br> 
+        <div style="border-style: ridge;">
+            {% if project.poster.profile.profile_pict%}
+            <p><img src="{{project.poster.profile.profile_pict.url}}" alt="profile" height="50px" width="50px"
+              style="border-radius: 50%"> {{project.poster.username}} </p>  
+            {% else %} 
+            <img src="https://cdn2.vectorstock.com/i/1000x1000/23/56/best-female-avatar-icon-thin-line-vector-18182356.jpg" alt="profile" height="50px"
+            width="50px" style="border-radius: 50%"> {{project.poster.username}}
+            {% endif %}                           
+        <h5><strong> {{project.title}} </strong></h5>
       <img src="{{project.image.url}}"
-        class="img-thumbnail photo img-responsive" alt="Image" data-toggle="modal" data-target="#{{project.id}}"> <br>
-        <p> {{project.description}}</p>
+        class="img-thumbnail photo img-responsive" alt="Image" data-toggle="modal" data-target="#{{project.id}}"  height="400px", width="400px"> <br>
+        <br>
         <a href="{{project.link}} "> <p>View Link</p> </a>
         
-    </div>
+    </div> <br> 
+    </div>  
     {% endfor %}
+
   </div>
 </div>
 
