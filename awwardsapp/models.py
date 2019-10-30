@@ -29,6 +29,7 @@ class Projects (models.Model):
     profile = models.ForeignKey(Profile,null = True)
     poster = models.ForeignKey(User,on_delete=models.CASCADE , null=True) 
     post_date=models.DateTimeField(auto_now_add=True)
+    link = models.CharField(max_length =200)
     
     def __str__(self):
         return self.title

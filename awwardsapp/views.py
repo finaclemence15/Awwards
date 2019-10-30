@@ -10,8 +10,9 @@ from rest_framework import status
 
 # Create your views here.
 def welcome(request):
-    projects = Projects.objects.all()
-    return render(request, 'index.html' ,{'projects':projects})
+    projects = Projects.objects.all().order_by("post_date")
+    profile = Profile.objects.all()
+    return render(request, 'index.html' ,{'projects':projects}, {'profile':profile})
 
 # search function
 def search_project(request):
@@ -48,7 +49,7 @@ def add_site(request):
 
 @login_required(login_url='/accounts/login/')
 def profile(request, profile_id):
-    current_user = request.user.username
+    current_user = request.user
     # profile = Profile.objects.filter(id=current_user.id)
     # images = Projects.objects.filter(username= current_user)
     # images = Image.objects.all()
@@ -56,50 +57,41 @@ def profile(request, profile_id):
         form = NewProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
-            profile.user = current_user
+            profile.username = current_user
             profile.save()
-        return redirect('myaccount')
+            return redirect('welcome')
 
     else:
         form = NewProfileForm()
     username=User.objects.all()    
-    projects = Projects.objects.filter(profile = profile_id)
-    profile = Profile.objects.filter(username__username = current_user)    
+    myProfile = Profile.objects.filter(username = current_user)    
     
-    return render(request, 'timeline.html', {"form": form, "username": username,"projects": projects, "profile": profile}) 
-
-@login_required(login_url='/accounts/login/')
-def myaccount(request):
-  current_user = request.user
-  myProfile = Profile.objects.filter(username = current_user).first()
-  return render(request, 'timeline.html', {"myProfile":myProfile})
-
+    return render(request, 'profile.html', {"form": form, "username": username,"myProfile": myProfile}) 
 
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):
-   current_user=request.user
-#    user_edit =Profile.objects.filter(username=current_user).first()
-   
-   if request.method =='POST':
-       
-       if Profile.objects.filter(username_id=current_user).exists():
-           form = NewProfileForm(request.POST,request.FILES,instance=Profile.objects.get(username_id = current_user))    
-       else:
-           form=NewProfileForm(request.POST,request.FILES)   
+    current_user=request.user
+
+    if request.method =='POST':
+        
+        if Profile.objects.filter(username_id=current_user).exists():
+            form = NewProfileForm(request.POST,request.FILES,instance=Profile.objects.get(username_id = current_user))    
+        else:
+            form=NewProfileForm(request.POST,request.FILES)   
            
-       if form.is_valid():
-         profile=form.save(commit=False)
-         profile.user=current_user
-         profile.save()
-         return redirect('profile',current_user.id)    
+        if form.is_valid():
+            profile=form.save(commit=False)
+            profile.username=current_user
+            profile.save()
+            return redirect('profile', current_user.id)    
      
-   else:
-       if Profile.objects.filter(username_id = current_user).exists():
-          form=NewProfileForm(instance =Profile.objects.get(username_id=current_user))
-       else:
-           form=NewProfileForm()     
-           
-   return render(request,'editProfile.html',{"form":form})                             
+    else:
+        if Profile.objects.filter(username_id = current_user).exists():
+            form=NewProfileForm(instance =Profile.objects.get(username_id=current_user))
+        else:
+            form=NewProfileForm()     
+            
+    return render(request,'editProfile.html',{"form":form})                             
   
 class ProjectsList(APIView):
     def get(self, request, format=None):

@@ -8,10 +8,9 @@ urlpatterns=[
     url(r'^search/', views.search_project, name='search_project'),
     url(r'^new/title$', views.add_site, name='add_site'),
     url(r'^new/profile/(\d+)', views.profile, name='profile'),
-    url(r'^myaccount/',views.myaccount,name = 'myaccount'),
     url(r'^new/edit_profile$', views.edit_profile, name='edit_profile'),
-    url(r'^api/project/$', views.ProjectsList.as_view(), name= 'project'),
-    url(r'^api/profile/$', views.ProfileList.as_view(), name= 'profile')
+    url(r'^api/projectApi/$', views.ProjectsList.as_view(), name= 'projectApi'),
+    url(r'^api/profileApi/$', views.ProfileList.as_view(), name= 'profileApi')
 ]
 
 if settings.DEBUG:

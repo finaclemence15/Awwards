@@ -1,3 +1,5 @@
+
+ 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,11 +13,9 @@
 
     <style>
         a {
-
             font-family: 'ZCOOL XiaoWei', serif;
             font-size: 20px;
         }
-
         #hd {
             font-family: 'ZCOOL XiaoWei', serif;
             font-size: 40px;
@@ -51,7 +51,7 @@
 
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a href="{%url 'myaccount'%}" style="text-decoration: none; color: black;">
+                        <a href="{% url 'profile' user.id%}" style="text-decoration: none; color: black; ">
                             {{user.username}}</a>
                         {% if user.profile_pict%}
                         <img src="{{user.profile.profile_pict.url}}" alt="profile" height="50px" width="50px"
@@ -73,11 +73,11 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="{%url 'profile'%}" style="text-decoration: none; color: black;">Profile
+                                    <a href="{%url 'profileApi'%}" style="text-decoration: none; color: black;">Profile
                                         Api</a>
                                 </li>
                                 <li>
-                                    <a href="{%url 'project'%}" style="text-decoration: none; color: black;"> project
+                                    <a href="{%url 'projectApi'%}" style="text-decoration: none; color: black;"> project
                                         Api</a>
                                 </li>
                                 <li>
@@ -88,7 +88,7 @@
                     </ul>
 
                     {% else %}
-                    <li>+
+                    <li>
                         <a class="btn btn-primary btn-sm" href="/accounts/login/"> Sign In </a>
                     </li>
 
