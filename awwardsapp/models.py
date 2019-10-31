@@ -54,8 +54,10 @@ class Rating(models.Model):
     design =  models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
     usability = models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
     content = models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
-    vote_submissions = models.IntegerField(default=0)
     user= models.ForeignKey(User,on_delete=models.CASCADE)
+    total=models.IntegerField()
+    avg=models.IntegerField(null=True)
+    
     
     def __str__(self):
         return self.content
