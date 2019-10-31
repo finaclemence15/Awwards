@@ -10,7 +10,8 @@ urlpatterns=[
     url(r'^new/profile/(\d+)', views.profile, name='profile'),
     url(r'^new/edit_profile$', views.edit_profile, name='edit_profile'),
     url(r'^api/projectApi/$', views.ProjectsList.as_view(), name= 'projectApi'),
-    url(r'^api/profileApi/$', views.ProfileList.as_view(), name= 'profileApi')
+    url(r'^api/profileApi/$', views.ProfileList.as_view(), name= 'profileApi'),
+    url(r'^grade/(\d+)',views.grade_rating,name ='grade')
 ]
 
 if settings.DEBUG:

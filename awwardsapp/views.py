@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Projects, Profile, Rating, User
-from .forms import NewProjectsForm, NewProfileForm
+from .forms import NewProjectsForm, NewProfileForm,NewRatingForm
 from .serializer import ProjectsSerializer, ProfileSerializer
 from rest_framework import status
 
@@ -12,6 +12,7 @@ from rest_framework import status
 def welcome(request):
     projects = Projects.objects.all().order_by("post_date")
     profile = Profile.objects.all()
+
     return render(request, 'index.html' ,{'projects':projects}, {'profile':profile})
 
 # search function
@@ -116,3 +117,21 @@ class ProfileList(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)      
+    
+@login_required(login_url='/accounts/login/')
+def grade_rating(request,id):
+     current_user=request.user
+     project=Projects.objects.get(id=id)
+     if request.method == 'POST':
+        form = NewRatingForm(request.POST, request.FILES)
+        if form.is_valid():
+            grade = form.save(commit=False)
+            grade.user = current_user
+            grade.project=project
+            grade.total=int(form.cleaned_data['design'])+int(form.cleaned_data['content'])+int(form.cleaned_data['usability'])
+            grade.avg= int(grade.total)/3
+            grade.save()
+        return redirect('welcome')
+     else:
+        form = NewRatingForm()
+     return render(request, 'rating.html', {"form": form, 'project':project})    
