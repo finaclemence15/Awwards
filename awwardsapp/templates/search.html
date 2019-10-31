@@ -1,8 +1,22 @@
 {%extends 'base.html'%}
 {% block content %}
+<style>
+ .footer{
+
+color: black;
+text-align: center;
+font-family: 'ZCOOL XiaoWei', serif;
+font-size: 20px;
+bottom: 0;
+}
+#bio{
+  font-family: 'ZCOOL XiaoWei', serif;
+
+}
+</style>
 <div class="container-fluid"> <br>
 
-  <div class="row"> 
+  <div class="row" id="bio"> 
     {% if projects%}
     <h4>Found {{ projects|length }} of searched term {{message}}</h4>
     {% else %}
@@ -11,16 +25,21 @@
 
   </div>
 
-  <div class="row"> <br>
+  <div class="row"> <br> <br>
     {% for project in projects %}
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      <div style="border-style:  groove;">
-      <h1>{{project.title}}</h1>
+      <div style="border-style: double;">
+      <h1 style="font-family: 'ZCOOL XiaoWei', serif;color: black">{{project.title}}</h1>
       <img src="{{project.image.url}}" class="img-thumbnail photo img-responsive" alt="Image" > <br> <br>
       <a href="{{project.link}} " style="text-decoration: none;text-align: center"> <p>View Project</p> </a>
       </div>
     </div> <br>
     {% endfor %}
+</div> <br> <br>
+<div class="row">
+<div class="footer">
+    <p>&copy; 2019 Copy Right  All right reserved.<p>
+  </div>
 </div>
 </div>
 {% endblock %}

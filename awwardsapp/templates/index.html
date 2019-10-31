@@ -11,6 +11,14 @@
     height: 500px;
 
   }
+ .footer{
+
+    color: black;
+    text-align: center;
+    font-family: 'ZCOOL XiaoWei', serif;
+    font-size: 20px;
+    bottom: 0;
+}
 </style>
 <div class="container-fluide">
   <div class="row" id="image"></div><br>
@@ -20,15 +28,15 @@
     {% for project in projects %}
 
     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-      <div style="border-style:  groove;">
+      <div style="border-style: double;">
         {% if project.poster.profile.profile_pict%}
-        <p><img src="{{project.poster.profile.profile_pict.url}}" alt="profile" height="50px" width="50px"
-            style="border-radius: 50%"> {{project.poster.username}} </p>
+        <p style="font-family: 'ZCOOL XiaoWei', serif;font-size: 20px"><img src="{{project.poster.profile.profile_pict.url}}" alt="profile" height="50px" width="50px"
+            style="border-radius: 50%;"> {{project.poster.username}} </p>
         {% else %}
         <img src="https://www.seekpng.com/png/small/41-410093_circled-user-icon-user-profile-icon-png.png" alt="profile"
           height="65px" width="65px" style="border-radius: 50%"> {{project.poster.username}}
         {% endif %}
-        <h5><strong> {{project.title}} </strong></h5>
+        <h3 style="text-align: center;font-family: 'ZCOOL XiaoWei', serif;"><strong> {{project.title}} </strong></h3>
         <img src="{{project.image.url}}" class="img-thumbnail photo img-responsive" alt="Image" data-toggle="modal"
           data-target="#{{project.id}}" height="600px" , width="600px"> <br>
         <br>
@@ -39,8 +47,10 @@
       </div> <br>
     </div>
     {% endfor %}
-
   </div>
+  <div class="footer">
+      <p>&copy; 2019 Copy Right  All right reserved.<p>
+    </div>
 </div>
 
 {% endblock %}
