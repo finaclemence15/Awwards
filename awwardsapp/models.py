@@ -51,11 +51,11 @@ class Projects (models.Model):
 class Rating(models.Model):
     profile = models.ForeignKey(Profile,null = True)
     project = models.ForeignKey(Projects,null = True)
-    design =  models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
-    usability = models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
-    content = models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
-    user= models.ForeignKey(User,on_delete=models.CASCADE)
-    total=models.IntegerField()
+    design =  models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0, null = True)
+    usability = models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0,null = True)
+    content = models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0,null = True)
+    user= models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    total=models.IntegerField(null = True)
     avg=models.IntegerField(null=True)
     
     
