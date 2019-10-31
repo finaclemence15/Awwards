@@ -51,9 +51,11 @@ class Projects (models.Model):
 class Rating(models.Model):
     profile = models.ForeignKey(Profile,null = True)
     project = models.ForeignKey(Projects,null = True)
-    design =  models.CharField(max_length =60)
-    usability = models.CharField(max_length =60)
-    content = HTMLField()
+    design =  models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
+    usability = models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
+    content = models.IntegerField(choices=list(zip(range(0, 11), range(0, 11))), default=0)
+    vote_submissions = models.IntegerField(default=0)
+    user= models.ForeignKey(User,on_delete=models.CASCADE)
     
     def __str__(self):
         return self.content
