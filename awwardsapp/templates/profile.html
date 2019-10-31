@@ -6,53 +6,55 @@
 <div class="container-fluid"> <br> <br>
   {%if myProfile%}
 
-    {%for prof in myProfile%}
-          <div class="row">
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"> <br>
-          <img src="{{prof.profile_pict.url}}" class="img-responsive" alt="Image" height="150px" width="150px"
-            style="border-radius: 50%;"> <br> <br> <br>
-          <p> Bio : {{prof.bio}}</p>
-          <p> Email : {{prof.email}}</p>
-          <p>Phone Number : {{prof.phone_number}}</p>
-        </div>
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"> <br> <br>
-          <p>{{prof.username}}
-            <a href="{%url 'edit_profile'%}" style="margin: 10px; text-decoration: none;">
-              <button type="button" class="btn btn-default btn-inverse"><strong> Edit Profile</strong> </button> </a>
-        </div>
-      </div>   <br> <br>
-    {%endfor%}
+  {%for prof in myProfile%}
+  <div class="row">
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"> <br>
+      <img src="{{prof.profile_pict.url}}" class="img-thumbnail photo img-responsive" alt="Image" height="300px" width="300px"> <br> <br> <br>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"> <br> <br>
+      <h2>{{prof.username}}</h2>
+      <p> Bio : {{prof.bio}}</p>
+      <p> Email : {{prof.email}}</p>
+      <p>Phone Number : {{prof.phone_number}}</p>
+      <a href="{%url 'edit_profile'%}" style="margin: 10px; text-decoration: none;">
+        <button type="button" class="btn btn-default btn-inverse"><strong> Edit Profile</strong> </button> </a>
+    </div>
+  </div>
+  {%endfor%}
 
   {%else%}
   <div class="card">
-      <div class="card-header">
-  
-      </div>
-      <div class="card-body" styles="width:50px;">
-  
-        <h3 class="card-text">complete your profile</h3>
-        <a class="btn btn-sm btn-primary" href="{% url 'edit_profile' %}"> complete Profile</a>
-      </div>
+    <div class="card-header">
+
+    </div>
+    <div class="card-body" styles="width:50px;">
+
+      <h3 class="card-text">complete your profile</h3>
+      <a class="btn btn-sm btn-primary" href="{% url 'edit_profile' %}"> complete Profile</a>
     </div>
   </div>
-  {%endif%} <br> <br>
-  
-  <div class="row"> 
-    
-    {% for project in projects %}
-    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        <div style="border-style:  groove;">
-        <h5><strong> {{project.title}} </strong></h5> <br> 
-      <img src="{{project.image.url}}"
-        class="img-thumbnail photo img-responsive" alt="Image" data-toggle="modal" data-target="#{{project.id}}" height="300px", width="400px"> <br>
- <br>
-        <a href="{{project.link}} "> <p>View Project</p> </a>
-        
+</div>
+{%endif%} <br> <br>
+
+<div class="row">
+
+  {% for project in projects %}
+
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <div style="border-style:  groove;"> <br>
+      <h5><strong> {{project.title}} </strong></h5>
+      <img src="{{project.image.url}}" class="img-thumbnail photo img-responsive" alt="Image" data-toggle="modal"
+        data-target="#{{project.id}}" height="300px" , width="400px"> <br>
+      <br>
+      <a href="{{project.link}} " style="text-decoration: none;text-align: center">
+        <p>View Project</p>
+      </a>
+
     </div>
-    </div>
-    {% endfor %}
   </div>
+  {% endfor %}
+</div> <br> <br>
 </div>
 
 {% endblock %}

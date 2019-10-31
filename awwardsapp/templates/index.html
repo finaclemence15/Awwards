@@ -15,14 +15,14 @@
             <p><img src="{{project.poster.profile.profile_pict.url}}" alt="profile" height="50px" width="50px"
               style="border-radius: 50%"> {{project.poster.username}} </p>  
             {% else %} 
-            <img src="https://www.seekpng.com/png/small/41-410093_circled-user-icon-user-profile-icon-png.png" alt="profile" height="50px"
-            width="50px" style="border-radius: 50%"> {{project.poster.username}}
+            <img src="https://www.seekpng.com/png/small/41-410093_circled-user-icon-user-profile-icon-png.png" alt="profile" height="65px"
+            width="65px" style="border-radius: 50%"> {{project.poster.username}}
             {% endif %}                           
         <h5><strong> {{project.title}} </strong></h5>
       <img src="{{project.image.url}}"
         class="img-thumbnail photo img-responsive" alt="Image" data-toggle="modal" data-target="#{{project.id}}"  height="600px", width="600px"> <br>
         <br>
-        <a href="{{project.link}} "> <p>View Project</p> </a>
+        <a href="{{project.link}} " style="text-decoration: none;text-align: center"> <p>View Project</p> </a>
         
     </div> <br> 
     </div>  
